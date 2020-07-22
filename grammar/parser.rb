@@ -17,9 +17,9 @@ module Grammar
     rule(:phrase_term) { quotes >> match("[^']").repeat(1).as(:term) >> quotes }
     rule(:term) { (phrase_term | single_term) >> space? }
 
-    rule(:clause) { term.as(:left) >> operator >> query.as(:right) }
+    rule(:clause) { term >> operator >> query }
     rule(:paren_clause) { lparen >> query >> rparen }
-    rule(:query) { (paren_clause | clause | term).repeat } 
+    rule(:query) { (paren_clause | clause | term).repeat.as(:query) } 
     
     root(:query)
   end
