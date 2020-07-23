@@ -31,7 +31,7 @@ class Sentence
   # Left to Right expresstion starts with simple term instead of expression
   def left_to_right?
     return true unless sentence
-  
+
     sentence[0] != "("
   end
 
@@ -39,7 +39,7 @@ class Sentence
   def prepared_sentence
     if sentence
       sentence.split("").reduce("") do |left_to_right_string, char|
-        left_to_right_string += ["(", ")"].include?(char) ? " #{char} " : char
+        left_to_right_string + (["(", ")"].include?(char) ? " #{char} " : char)
       end
     else
       ""
