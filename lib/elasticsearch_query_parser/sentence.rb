@@ -1,5 +1,5 @@
-# This class transform user query to `Left to Right` expression for parser usage
 module ElasticsearchQueryParser
+  # Transform user query to `Left to Right` expression for parser usage
   class Sentence
     attr_reader :sentence
     private :sentence
@@ -7,10 +7,15 @@ module ElasticsearchQueryParser
     # Split by whitespace, but not split words in quotes
     WORD_SPLITTER_REGEX = /(?:'(?:\\.|[^'])*'|[^' ])+/.freeze
 
+    # Initialize with user input
     def initialize(sentence)
       @sentence = sentence
     end
 
+    # Return valid for parser usage user input
+    # Example:
+    #   >> ElasticsearchQueryParser.new("(London AND Madrid) OR Paris").to_s
+    #   => "Paris OR ( Madrid AND London )"
     def to_s
       left_to_right? ? sentence : revert_left_to_right
     end

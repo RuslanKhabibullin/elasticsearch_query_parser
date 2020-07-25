@@ -1,5 +1,6 @@
 module ElasticsearchQueryParser
   module Grammar
+    # User query grammar description (PEG tree)
     class Parser < ::Parslet::Parser
       rule(:lparen) { str("(") >> space? }
       rule(:rparen) { str(")") >> space? }
