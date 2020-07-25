@@ -65,7 +65,7 @@ Result:
 {query:{bool:{must:[{match:{text:{query:"VC",operator:"and"}}},{bool:{must:[{match:{text:{query:"Venture Capital",operator:"and"}}},{bool:{should:[{match:{text:{query:"Madrid",operator:"and"}}},{bool:{must:[{match:{text:{query:"Paris",operator:"and"}}},{match:{text:{query:"London",operator:"and"}}}]}}]}}]}}]}}}
 ```
 
-- ``ElasticsearchQueryParser.new("((London OR Madrid) NOT VC) NOT 'Venture Capital'").call`
+- `ElasticsearchQueryParser.new("((London OR Madrid) NOT VC) NOT 'Venture Capital'").call`
 
 Result:
 
