@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    elasticsearch_query_parser (0.0.2)
+    elasticsearch_query_parser (0.0.3)
       parslet (~> 2.0)
 
 GEM
