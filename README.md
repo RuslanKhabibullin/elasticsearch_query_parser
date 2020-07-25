@@ -3,7 +3,7 @@
 [![Build Status](https://semaphoreci.com/api/v1/khabibullin_ruslan/elasticsearch_query_parser/branches/master/badge.svg)](https://semaphoreci.com/khabibullin_ruslan/elasticsearch_query_parser)
 
 - I can search “London” and it will return everyone with “London”
-- And then a complex example could be a boolean search such as: ((‘London’ OR ‘Paris’ OR ‘Madrid’) AND ‘Venture Capital’) NOT ‘VC’
+- And then a complex example could be a boolean search such as: ((('London' OR 'Paris') OR 'Madrid') AND 'Venture Capital') NOT VC
 
 ## Hot to install
 

@@ -5,7 +5,7 @@ module ElasticsearchQueryParser
     private :sentence
 
     # Split by whitespace, but not split words in quotes
-    WORD_SPLITTER_REGEX = /(?:'(?:\\.|[^"])*'|[^" ])+/.freeze
+    WORD_SPLITTER_REGEX = /(?:'(?:\\.|[^'])*'|[^' ])+/.freeze
 
     def initialize(sentence)
       @sentence = sentence
