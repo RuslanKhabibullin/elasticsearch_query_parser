@@ -187,7 +187,7 @@ By default `#parse_query` generates elastic query with `text` attribute. You can
 ```ruby
 ElasticsearchQueryParser.configure do |config|
   # elastic_field_name can accepts symbol or string
-  config.elastic_field_name = 'title'
+  config.elastic_field_name = "title"
 end
 
 ElasticsearchQueryParser.parse_query("London")
