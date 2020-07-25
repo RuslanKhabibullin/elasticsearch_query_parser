@@ -1,4 +1,4 @@
-require_relative "../elasticsearch_query_parser"
+require_relative "../lib/elasticsearch_query_parser"
 
 RSpec.describe ElasticsearchQueryParser do
   subject(:parser) { described_class.new(query) }

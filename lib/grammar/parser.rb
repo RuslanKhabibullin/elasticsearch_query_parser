@@ -19,8 +19,8 @@ module Grammar
 
     rule(:clause) { term >> operator >> query }
     rule(:paren_clause) { lparen >> query >> rparen }
-    rule(:query) { (paren_clause | clause | term).repeat.as(:query) } 
-    
+    rule(:query) { (paren_clause | clause | term).repeat.as(:query) }
+
     root(:query)
   end
 end

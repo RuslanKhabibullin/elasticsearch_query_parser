@@ -1,8 +1,15 @@
+PATH
+  remote: .
+  specs:
+    elasticsearch_query_parser (0.0.1)
+      parslet (~> 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
     diff-lcs (1.4.4)
     parslet (2.0.0)
+    rake (13.0.1)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
       rspec-expectations (~> 3.9.0)
@@ -21,8 +28,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  parslet (~> 2.0)
-  rspec
+  elasticsearch_query_parser!
+  rake
+  rspec (~> 3.9)
 
 BUNDLED WITH
    1.17.3

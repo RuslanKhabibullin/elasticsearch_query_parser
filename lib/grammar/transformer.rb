@@ -1,6 +1,6 @@
+require_relative "presenters/operator"
 require_relative "presenters/query"
 require_relative "presenters/term"
-require_relative "presenters/operator"
 
 module Grammar
   class Transformer < ::Parslet::Transform
@@ -11,7 +11,7 @@ module Grammar
       if query.all? { |element| element.is_a?(Presenters::Term) }
         Presenters::Query.new(
           query,
-          Presenters::Operator.new('OR'),
+          Presenters::Operator.new("OR"),
           []
         )
       else

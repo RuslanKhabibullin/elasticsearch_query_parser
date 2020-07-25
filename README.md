@@ -9,66 +9,66 @@ User input examples:
 
 Client query examples:
 
-- London
+- `ElasticsearchQueryParser.new("London").call`
 
 Result:
 
 ```
-{"query":{"bool":{"should":[{"match":{"text":{"query":"London","operator":"and"}}}]}}}
+{query:{bool:{should:[{match:{text:{query:"London",operator:"and"}}}]}}}
 ```
 
-- London Madrid
+- `ElasticsearchQueryParser.new("London Madrid").call`
 
 Result:
 
 ```
-{"query":{"bool":{"should":[{"match":{"text":{"query":"London","operator":"and"}}},{"match":{"text":{"query":"Madrid","operator":"and"}}}]}}}
+{query:{bool:{should:[{match:{text:{query:"London",operator:"and"}}},{match:{text:{query:"Madrid",operator:"and"}}}]}}}
 ```
 
-- London OR Madrid
+- `ElasticsearchQueryParser.new("London OR Madrid").call`
 
 Result:
 
 ```
-{"query":{"bool":{"should":[{"match":{"text":{"query":"London","operator":"and"}}},{"match":{"text":{"query":"Madrid","operator":"and"}}}]}}}
+{query:{bool:{should:[{match:{text:{query:"London",operator:"and"}}},{match:{text:{query:"Madrid",operator:"and"}}}]}}}
 ```
 
-- (London OR Madrid) AND Paris
+- `ElasticsearchQueryParser.new("(London OR Madrid) AND Paris").call`
 
 Result:
 
 ```
-{"query":{"bool":{"must":[{"match":{"text":{"query":"Paris","operator":"and"}}},{"bool":{"should":[{"match":{"text":{"query":"Madrid","operator":"and"}}},{"match":{"text":{"query":"London","operator":"and"}}}]}}]}}}
+{query:{bool:{must:[{match:{text:{query:"Paris",operator:"and"}}},{bool:{should:[{match:{text:{query:"Madrid",operator:"and"}}},{match:{text:{query:"London",operator:"and"}}}]}}]}}}
 ```
 
-- (((London OR Paris) OR Madrid) AND 'Venture Capital') NOT VC
+- `ElasticsearchQueryParser.new("(((London OR Paris) OR Madrid) AND 'Venture Capital') NOT VC").call`
 
 Result:
 
 ```
-{"query":{"bool":{"must":[{"match":{"text":{"query":"Venture Capital","operator":"and"}}},{"bool":{"should":[{"match":{"text":{"query":"Madrid","operator":"and"}}},{"bool":{"should":[{"match":{"text":{"query":"Paris","operator":"and"}}},{"match":{"text":{"query":"London","operator":"and"}}}]}}]}}],"must_not":[{"match":{"text":{"query":"VC","operator":"and"}}}]}}}
+{query:{bool:{must:[{match:{text:{query:"Venture Capital",operator:"and"}}},{bool:{should:[{match:{text:{query:"Madrid",operator:"and"}}},{bool:{should:[{match:{text:{query:"Paris",operator:"and"}}},{match:{text:{query:"London",operator:"and"}}}]}}]}}],must_not:[{match:{text:{query:"VC",operator:"and"}}}]}}}
 ```
 
-- Paris AND (London OR Madrid)
+- `ElasticsearchQueryParser.new("Paris AND (London OR Madrid)").call`
 
 Result:
 
 ```
-{"query":{"bool":{"must":[{"match":{"text":{"query":"Paris","operator":"and"}}},{"bool":{"should":[{"match":{"text":{"query":"London","operator":"and"}}},{"match":{"text":{"query":"Madrid","operator":"and"}}}]}}]}}}
+{query:{bool:{must:[{match:{text:{query:"Paris",operator:"and"}}},{bool:{should:[{match:{text:{query:"London",operator:"and"}}},{match:{text:{query:"Madrid",operator:"and"}}}]}}]}}}
 ```
 
-- VC AND ('Venture Capital' AND (Madrid OR (Paris AND London)))
+- `ElasticsearchQueryParser.new("VC AND ('Venture Capital' AND (Madrid OR (Paris AND London)))").call`
 
 Result:
 
 ```
-{"query":{"bool":{"must":[{"match":{"text":{"query":"VC","operator":"and"}}},{"bool":{"must":[{"match":{"text":{"query":"Venture Capital","operator":"and"}}},{"bool":{"should":[{"match":{"text":{"query":"Madrid","operator":"and"}}},{"bool":{"must":[{"match":{"text":{"query":"Paris","operator":"and"}}},{"match":{"text":{"query":"London","operator":"and"}}}]}}]}}]}}]}}}
+{query:{bool:{must:[{match:{text:{query:"VC",operator:"and"}}},{bool:{must:[{match:{text:{query:"Venture Capital",operator:"and"}}},{bool:{should:[{match:{text:{query:"Madrid",operator:"and"}}},{bool:{must:[{match:{text:{query:"Paris",operator:"and"}}},{match:{text:{query:"London",operator:"and"}}}]}}]}}]}}]}}}
 ```
 
-- ((London OR Madrid) NOT VC) NOT 'Venture Capital'
+- ``ElasticsearchQueryParser.new("((London OR Madrid) NOT VC) NOT 'Venture Capital'").call`
 
 Result:
 
 ```
-{"query":{"bool":{"should":[{"match":{"text":{"query":"Madrid","operator":"and"}}},{"match":{"text":{"query":"London","operator":"and"}}}],"must_not":[{"match":{"text":{"query":"VC","operator":"and"}}},{"match":{"text":{"query":"Venture Capital","operator":"and"}}}]}}}
+{query:{bool:{should:[{match:{text:{query:"Madrid",operator:"and"}}},{match:{text:{query:"London",operator:"and"}}}],must_not:[{match:{text:{query:"VC",operator:"and"}}},{match:{text:{query:"Venture Capital",operator:"and"}}}]}}}
 ```

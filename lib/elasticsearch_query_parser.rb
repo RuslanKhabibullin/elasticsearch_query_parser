@@ -1,7 +1,7 @@
 require "parslet"
+require_relative "sentence"
 require_relative "grammar/parser"
 require_relative "grammar/transformer"
-require_relative "sentence"
 
 class ElasticsearchQueryParser
   attr_reader :query
