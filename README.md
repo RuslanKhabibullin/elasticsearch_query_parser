@@ -24,10 +24,10 @@ $ bundle
 ```ruby
 require 'elasticsearch_query_parser'
 
-ElasticsearchQueryParser.new("London").call
+ElasticsearchQueryParser.parse_query("London")
 # => { query: { bool: { should: [{ match: { text: { query: "London", operator: "and" } } }] } } }
 
-ElasticsearchQueryParser.new("London Madrid").call
+ElasticsearchQueryParser.parse_query("London Madrid")
 =begin
 {
   query: {
@@ -41,7 +41,7 @@ ElasticsearchQueryParser.new("London Madrid").call
 }
 =end
 
-ElasticsearchQueryParser.new("London OR Madrid").call
+ElasticsearchQueryParser.parse_query("London OR Madrid")
 =begin
 {
   query: {
@@ -55,7 +55,7 @@ ElasticsearchQueryParser.new("London OR Madrid").call
 }
 =end
 
-ElasticsearchQueryParser.new("(London OR Madrid) AND Paris").call
+ElasticsearchQueryParser.parse_query("(London OR Madrid) AND Paris")
 =begin
 {
   query: {
@@ -76,7 +76,7 @@ ElasticsearchQueryParser.new("(London OR Madrid) AND Paris").call
 }
 =end
 
-ElasticsearchQueryParser.new("(((London OR Paris) OR Madrid) AND 'Venture Capital') NOT VC").call
+ElasticsearchQueryParser.parse_query("(((London OR Paris) OR Madrid) AND 'Venture Capital') NOT VC")
 =begin
 {
   query: {
@@ -105,7 +105,7 @@ ElasticsearchQueryParser.new("(((London OR Paris) OR Madrid) AND 'Venture Capita
 }
 =end
 
-ElasticsearchQueryParser.new("Paris AND (London OR Madrid)").call
+ElasticsearchQueryParser.parse_query("Paris AND (London OR Madrid)")
 =begin
 {
   query:{
@@ -126,7 +126,7 @@ ElasticsearchQueryParser.new("Paris AND (London OR Madrid)").call
 }
 =end
 
-ElasticsearchQueryParser.new("VC AND ('Venture Capital' AND (Madrid OR (Paris AND London)))").call
+ElasticsearchQueryParser.parse_query("VC AND ('Venture Capital' AND (Madrid OR (Paris AND London)))")
 =begin
 {
   query: {
@@ -161,7 +161,7 @@ ElasticsearchQueryParser.new("VC AND ('Venture Capital' AND (Madrid OR (Paris AN
 }
 =end
 
-ElasticsearchQueryParser.new("((London OR Madrid) NOT VC) NOT 'Venture Capital'").call
+ElasticsearchQueryParser.parse_query("((London OR Madrid) NOT VC) NOT 'Venture Capital'")
 =begin
 {
   query: {
@@ -178,3 +178,18 @@ ElasticsearchQueryParser.new("((London OR Madrid) NOT VC) NOT 'Venture Capital'"
   }
 }
 =end
+```
+
+## How to change Elastic field name
+
+By default `#parse_query` generates elastic query with `text` attribute. You can customize field name via config:
+
+```ruby
+ElasticsearchQueryParser.configure do |config|
+  # elastic_field_name can accepts symbol or string
+  config.elastic_field_name = 'title'
+end
+
+ElasticsearchQueryParser.parse_query("London")
+# => { query: { bool: { should: [{ match: { "title": { query: "London", operator: "and" } } }] } } }
+```

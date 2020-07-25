@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "elasticsearch_query_parser"
-  s.version = "0.0.1"
+  s.version = "0.0.2"
   s.date = "2020-07-25"
   s.summary = "Parse user queries into Elastic query"
   s.description = "Convert user queries like `(London OR Paris) AND 'John Wick'` into elasticsearch JSON queries"
