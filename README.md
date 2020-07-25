@@ -22,7 +22,7 @@ $ bundle
 ## How to use
 
 ```ruby
-require 'elasticsearch_query_parser'
+require "elasticsearch_query_parser"
 
 ElasticsearchQueryParser.parse_query("London")
 # => { query: { bool: { should: [{ match: { text: { query: "London", operator: "and" } } }] } } }
